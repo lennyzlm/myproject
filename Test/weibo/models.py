@@ -21,6 +21,7 @@ class Contents(models.Model):
     content = models.TextField(max_length=140)
     comment_count = models.IntegerField(default=0)
     content_time = models.DateTimeField()
+    pic = models.ImageField(upload_to='pics', blank=True, null=True)
 
 class Comments(models.Model):
     content_id = models.IntegerField()

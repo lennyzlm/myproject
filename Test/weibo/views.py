@@ -105,10 +105,15 @@ def send(request):  # 发布微博，并刷新页面
     if request.method == 'POST':
         content = request.POST['content']
         username = request.session.get('username')
+        if request.FILES.get('pic'):
+            pic = request.FILES.get('pic')
+        else:
+            pic = None
         mycontent = Contents()
         mycontent.username = username
         mycontent.content = content
         mycontent.content_time = datetime.now()
+        mycontent.pic = pic
         mycontent.save()
         userprofile = UserProfiles.objects.get(username=username)
         userprofile.contents_count += 1

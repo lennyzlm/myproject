@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.templatetags.static import static
 
+from Test import settings
 from weibo import views
 
 urlpatterns = [
@@ -37,4 +39,7 @@ urlpatterns = [
     url(r'^delcomment/?$', views.delcomment),
     url(r'^editprofile/$', views.editprofile),
     url(r'^updateprofile/$', views.updateprofile),
+    url(r'icons/(?P<path>.*)', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT+"/icons"}),
+    url(r'pics/(?P<path>.*)', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT+"/pics"}),
 ]
+

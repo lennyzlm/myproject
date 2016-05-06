@@ -44,7 +44,7 @@
                 {% if userprofile.username == username%}
                 <span style="font-size: 70%"><a style="font-size: 70%" tpye="button"class="btn btn-primary" href="/editprofile/">Edit profile</a></span>
             {% endif %}
-            {% if userprofile.icon %}<img src="{{ userprofile.icon.path}}" style="width: 500px; height: 500px; position:absolute" />{% endif %}
+            {% if userprofile.icon %}<img src="{{ userprofile.icon.url}}" style="width: 500px; height: 500px; position:absolute" />{% endif %}
             </div>
 
         <div style="margin-left: 450px">

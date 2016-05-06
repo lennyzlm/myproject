@@ -30,9 +30,10 @@
         <span style="font-size: 70%"><a style="font-size: 70%" tpye="button"class="btn btn-default" href="/listfollower/?username={{ username }}">FOLLOWERS{{ myprofile.follower_count}}</a></span>
  </div>
  <div style="margin-left:500px">
-    <form  action = "/send/"method="post">
+    <form  action = "/send/"method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <input type="text-align:center" placeholder="What's happening?" name="content">
+    <input type="file" name="pic">
     <input type="submit" class="btn btn-primary" value="Submit">
         {% for eachcontent in showcontent %}
            <br/>
@@ -40,6 +41,7 @@
                 <span style="font-family: FangSong;font-size: 85%;font-color:gray">{{eachcontent.content_time }}</span>
             </div>
             <div style="font-family:SimSun">{{eachcontent.content }}</div>
+            {% if eachcontent.pic %}<img src="{{ eachcontent.pic.url}}" style="width: 500px; height: 500px; position:absolute" />{% endif %}
             <span><a href="/comment/?content_id={{ eachcontent.id}}" >Comments{{ eachcontent.comment_count }}</a></span>
             {% if eachcontent.username == username%}
             <span ><a href="/delcontent/?content_id={{ eachcontent.id}}" >Delete</a></span>
