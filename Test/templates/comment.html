@@ -6,14 +6,66 @@
  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
  <script type="text/javascript" src=" static 'bootstrap/js/bootstrap.js' "></script>
- <style type="text/css" src=" static 'bootstrap/css/bootstrap.css' "></style>
+ <style type="text/css" src=" static 'bootstrap/css/bootstrap.css' ">
+.lianjie{
+    margin-top: 50px;
+    font-size: x-large;
+}
+
+     .yangshi{
+         background-color: white;
+         width: 62%;
+         padding-top: 0px;
+         margin-top:20px;
+         border:4px;solid-color: #04fffd;
+     }
+     a:hover{
+         background-color: white;
+     }
+.ziti {
+width: 150px;
+color: black;
+}
+.pinglun{
+    background-color: white;
+    margin-left: 20px;
+
+    width: 110%;
+}
+          .leftindex {
+         width:150px;
+         color:#FCFCFC;
+     }
+ </style>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Comment</title>
+    <title>{{ userprofile.username }}</title>
 </head>
-<body style="background:url(http://img1.qq.com/gamezone/pics/14806/14806956.jpg) ;background-size:100%;background-position:center; ">
+<body  background="images/background.jpg "style="background-size:100%;background-position:center; ">
+<div style="margin-left: 0px;margin-top: 40px;width:5%;height: 1800px;float: left;background:url(http://img3.imgtn.bdimg.com/it/u=581864004,1701839937&fm=21&gp=0.jpg)" ></div>
+<div style="margin-left: 0px;margin-top: 40px;width:5%;height: 1800px;float: right;background:url(http://img3.imgtn.bdimg.com/it/u=581864004,1701839937&fm=21&gp=0.jpg)" ></div>
+    <div style="margin-left: 10px;margin-top: 40px;width:15%;height: 1800px;float: left;background-color:#AAAAFF" >
+
+    <div class="lianjie"><a class="leftindex";href="www.baidu.com">News  </a></div>
+    <div class="lianjie"><a class="leftindex";href="www.baidu.com">Favorite  </a></div>
+    <div class="lianjie"><a class="leftindex";href="www.baidu.com">Like   </a></div>
+    <div class="lianjie"><a class="leftindex";href="www.baidu.com">Friends    </a></div>
+    <div class="lianjie"><a class="leftindex";href="www.baidu.com">Group vblog             </a></div>
+    <div class="lianjie"><a class="leftindex";href="www.baidu.com">Special Focus             </a></div>
+</div>
+ <div style="margin-top: 20px;text-align: center;background-color: #AAAAFF;width: 15%;height: 1800px;float: right">
+        <br><br/>
+        <span><img src="{{ myprofile.icon.url}}" style="width: 100px; height: 100px;border-radius:50px;"> </span>
+        <div style="margin-top: 5px; font-family: SimHei;font-size: 200%;font-color:black;"> <a style="color:black" href="/getprofile/">{{ username }}</a></div>
+        <div style="margin-top: 5px;font-size: 80%;font-color:gray;">{{myprofile.intro}}</div>
+        <span style="font-size: 100%;"><a style="font-size: 100%;" tpye="button"class="btn " href="/listfollow/?username={{ username }}">FOLLOWING{{ myprofile.follow_count }}</a></span>
+        <span style="font-size: 100%;"><a style="font-size: 100%;" tpye="button"class="btn " href="/listfollower/?username={{ username }}">FOLLOWERS{{ myprofile.follower_count}}</a></span>
+ </div>
+
+
  <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
     <ul class="nav navbar-nav">
            <li role="presentation" class="active"><a href="/">Home</a></li>
@@ -24,20 +76,28 @@
            <li role="presentation"><a style="color:black"href="/mylogout/">Log out</a></li>
     </ul>
  </div>
- <div style="margin-left: 500px;margin-top: 80px">
+ <div style="margin-left: 430px;margin-top: 80px;background-color: white;width: 58%;margin-bottom: 10px;">
+ <div style ="margin-left:70px">
+  {% if content.icon %}<img src="{{ content.icon.url}}" style="margin-top: 0px;margin-left: -60px;width: 50px; height: 50px;border-radius:25px; position:absolute;" />{% endif %}
     <span><a style="font-family: SimHei;font-size: 150%;color:black"href="/getprofile/?username={{ content.username }}" >{{content.username }}</a></span>
           <span style="font-size: 80%;font-color:gray">{{content.content_time }}</span>
-          <div>{{content.content }}</div>
-
+            <div style="margin-top: 40px;font-family: SumSun" >{{content.content }}</div>
+                {% if content.pic %}
+                <div><img src="{{ content.pic.url}}" style="width: 300px; height: 200px;margin-top: 10px;margin-left: 0px;" /></div>
+  </div>
+               {% endif %}
+ </dir>
                 <br/><br/>
-    <form  action = "/scomment/" method="post">
+    <form  action = "/scomment/" method="post"style="margin-top: 20px">
     {% csrf_token %}
         <input type="hidden" name="content_id" value={{ content.id }} width="50px" height="50px">
-        <input type="text" name="comment" width="50px" height="50px">
-         <input type="submit" value="Comment">
+        <input type="text" name="comment"style= "width:350px ;height:30px"/>
+         <input type="submit" value="Comment"style="background-color: #0e90d2;margin-top: -5px">
     </form>
         {% for eachcomment in comments %}
            <br/>
+            <div class="pinglun">
+            {% if  eachcontent.icon %}<img src="{{  eachcontent.icon.url}}" style="margin-top: 0px;margin-left: -60px;width: 50px; height: 50px; position:absolute;" />{% endif %}
             <span style="font-family: SimHei;font-size: 150%;color:black">{{ eachcomment.comment_username }}：</span>
             <span>{{ eachcomment.comment }}</span>
              <br/><br/>
@@ -45,6 +105,7 @@
             {% if eachcontent.username == username%}
             <span ><a href="/delcomment/?comment_id={{ eachcomment.id}}" >删除</a></span>
            {% endif %}
+            </div>
         {% endfor %}
  </div>
 </body>
