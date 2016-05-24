@@ -83,7 +83,7 @@ color: black;
  </div>
  <div style="margin-left:25%;margin-top:100px">
         {% for eachuser in theUserprofile %}
-            <div style="margin-top: 100px;margin-left:0px;background-color: white;width:900px;height:80px;text-align:center;margin-top: 100px">
+            <div style="margin-top: 50px;margin-left:0px;background-color: white;width:900px;height:80px;text-align:center;margin-top: 100px">
            <br/>
             {% if eachuser.icon %}<img src="{{ eachuser.icon.url}}" style="margin-top: -15px;margin-left:-100px;width: 50px; height: 50px;border-radius: 25px; position:absolute;" />{% endif %}
             <div style="font-family: SimHei;font-size:150%"><a style="color:black;text-align:center"href="/getprofile/?username={{ eachuser.username }}" >{{eachuser.username }}</a></div>
